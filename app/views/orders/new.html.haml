@@ -1,0 +1,8 @@
+%h1 Create new order
+= form_with(model: @order, local: true) do |f|
+  %h3 What to exclude from the dish?
+  - @ingredients.each do |ingredient|
+    .mb-1
+      = f.check_box :rejected_ingredients, { multiple: true, id: "ingredient_#{ingredient.id}" }, ingredient.id
+      = f.label ingredient.name, for: "ingredient_#{ingredient.id}"
+  = f.submit 'Make an order', class: 'btn btn-primary mt-2'
