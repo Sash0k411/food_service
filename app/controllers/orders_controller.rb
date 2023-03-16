@@ -10,21 +10,14 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new
-    @order.dishes = OrderService.new(params[:order][:rejected_ingredients]).call
-
-    if @order.save
+    result = Order::Create.new(params[:order][:rejected_ingredients])
+    if result.create(params[:order])
       flash[:success] = 'Success save'
     else
       flash[:danger] = 'Fail at save'
+      @errors = result.errors
     end
 
     redirect_to root_path
-  end
-
-  private
-
-  def order_params
-    params.require(:order).permit(rejected_ingredients: [])
   end
 end

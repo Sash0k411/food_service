@@ -1,10 +1,10 @@
 %h1 Orders
 .mb-3
   = button_to 'Cooking order', kitchen_orders_path, class: 'btn btn-secondary'
-- @orders.each do |order|
+- @orders.includes(:dishes).each do |order|
   .card.mb-5
     .card-body
-      = "Order №#{order.id}. Created at #{order.created_at.strftime('%m/%d/%Y %H:%M')}"
+      = "Order №#{order.id}. Created at #{order.created_at.strftime('%d/%m/%Y %H:%M')}"
       %ul
         - order.dishes.each do |dish|
           %li

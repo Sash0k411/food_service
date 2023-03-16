@@ -11,7 +11,6 @@ class OrderService
   private
 
   def rejected_dishes
-    Dish.joins(:original_ingredients)
-        .where(original_ingredients: { ingredient_id: @rejected_ingredients })
+    Dish.includes(:original_ingredients).where(original_ingredients: { ingredient_id: @rejected_ingredients })
   end
 end
