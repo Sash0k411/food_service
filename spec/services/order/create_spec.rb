@@ -2,24 +2,19 @@
 
 require 'rails_helper'
 
-RSpec.describe Kitchen::Order::Index do
-  describe '#call' do
-    let!(:dish1) { create(:dish, name: 'Dish 1') }
-    let!(:dish2) { create(:dish, name: 'Dish 2') }
+RSpec.describe Dish, type: :model do
+  describe 'rejected ingredients query' do
+    let!(:rejected_ingredient) { create(:original_ingredient) }
+    let!(:dish_with_rejected_ingredient) { create(:dish) }
 
     before do
-      create_list(:order_item, 3, dish: dish1)
-      create_list(:order_item, 2, dish: dish2)
+      dish_with_rejected_ingredient.original_ingredients << rejected_ingredient
     end
 
-    it 'returns a list of dishes with their count in descending order' do
-      result = described_class.new.call
-
-      expect(result.length).to eq(2)
-      expect(result[0].name).to eq('Dish 1')
-      expect(result[0].count).to eq(3)
-      expect(result[1].name).to eq('Dish 2')
-      expect(result[1].count).to eq(2)
+    it 'returns dishes with rejected ingredients' do
+      rejected_ingredients = [rejected_ingredient.ingredient_id]
+      dishes = Dish.includes(:original_ingredients).where(original_ingredients: { ingredient_id: rejected_ingredients })
+      expect(dishes).to include(dish_with_rejected_ingredient)
     end
   end
 end

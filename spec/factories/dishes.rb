@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :dish do
-    name { 'Test dish' }
+    sequence(:name) { |n| "Dish #{n}" }
   end
 end
