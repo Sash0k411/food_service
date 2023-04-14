@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Order::Create
   attr_reader :errors
 
@@ -21,5 +23,4 @@ class Order::Create
       false
     end
   end
-
 end

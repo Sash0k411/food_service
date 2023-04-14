@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 class OrdersController < ApplicationController
   def index
@@ -6,7 +7,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @ingredients = Ingredient.order(:name)
+    @ingredients = Kitchen::Ingredient::Index.new.call
   end
 
   def create

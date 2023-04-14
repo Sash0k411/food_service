@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 class OrderService
   def initialize(rejected_ingredients)

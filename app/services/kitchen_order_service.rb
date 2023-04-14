@@ -1,10 +1,9 @@
+# frozen_string_literal: true
+
 class KitchenOrderService
   def call
-    dishes = OrderItem.pluck(:dish_id).map { |id| Dish.find(id) }.group_by(&:name)
-    counted = dishes.each_with_object([]) do |(k, v), arr|
-      arr << { name: k, count: v.count }
-    end
-
-    counted.sort_by { |dish| dish[:count] }.reverse
+    OrderItem.joins(:dish)
+             .group('dishes.name')
+             .select('dishes.name as name, COUNT(*) as count')
   end
 end
