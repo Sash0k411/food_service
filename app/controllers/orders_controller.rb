@@ -14,11 +14,10 @@ class OrdersController < ApplicationController
     result = Order::Create.new(params[:order][:rejected_ingredients])
     if result.create(params[:order])
       flash[:success] = 'Success save'
+      redirect_to root_path
     else
       flash[:danger] = 'Fail at save'
       @errors = result.errors
     end
-
-    redirect_to root_path
   end
 end
