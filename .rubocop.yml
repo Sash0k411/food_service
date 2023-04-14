@@ -1,3 +1,5 @@
 Style/FrozenStringLiteralComment:
   Enabled: true
   SafeAutoCorrect: true
+Layout/EmptyFile:
+  Enabled: true

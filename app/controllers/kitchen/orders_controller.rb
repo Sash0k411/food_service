@@ -2,7 +2,7 @@
 
 class Kitchen::OrdersController < ApplicationController
   def create
-    result = KitchenOrderService.new.call
+    result = Kitchen::Order::Index.new.call
 
     render json: result, only: %i[name count]
   end

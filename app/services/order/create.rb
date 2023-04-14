@@ -6,7 +6,7 @@ class Order::Create
   def initialize(rejected_ingredients)
     @rejected_ingredients = rejected_ingredients.map(&:to_i).reject(&:zero?)
     @errors = []
-    @order_service = OrderService.new(@rejected_ingredients)
+    @order_service = Order::Service.new(@rejected_ingredients)
   end
 
   def new

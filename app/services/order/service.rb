@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class OrderService
+class Order::Service
   def initialize(rejected_ingredients)
     @rejected_ingredients = rejected_ingredients.map(&:to_i).reject(&:zero?)
   end

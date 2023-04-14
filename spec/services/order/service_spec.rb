@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe OrderService do
+RSpec.describe Order::Service do
   describe '#call' do
     subject(:service) { described_class.new([excluded_ingredient.id]) }
 
