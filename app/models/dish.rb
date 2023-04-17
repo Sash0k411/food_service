@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Dish < ApplicationRecord
   has_many :original_ingredients, dependent: :destroy
   has_many :ingredients, through: :original_ingredients

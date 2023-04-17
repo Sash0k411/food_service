@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class Kitchen::OrdersController < ApplicationController
   def create
-    result = KitchenOrderService.new.call
+    result = Kitchen::Order::Index.new.call
 
-    render json: result
+    render json: result, only: %i[name count]
   end
 end

@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 
 FactoryBot.define do
   factory :dish do
-    name { 'Test dish' }
+    sequence(:name) { |n| "Dish #{n}" }
   end
 end

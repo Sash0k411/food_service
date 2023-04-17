@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateOriginalIngredients < ActiveRecord::Migration[7.0]
   def change
     create_table :original_ingredients do |t|

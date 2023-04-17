@@ -1,4 +1,6 @@
-menu = YAML::load_file(Rails.root.join('menu.yml'))
+# frozen_string_literal: true
+
+menu = YAML.load_file(Rails.root.join('menu.yml'))
 
 menu['ingredients'].each do |ingredient|
   Ingredient.create!(name: ingredient.downcase)
@@ -8,6 +10,6 @@ menu['dishes'].each do |data|
   dish = Dish.create!(name: data['name'])
 
   data['ingredients'].each do |ingredient|
-    OriginalIngredient.create!(dish:, ingredient: Ingredient.find_by(name: ingredient.downcase))
+    dish.original_ingredients.create!(ingredient: Ingredient.find_by(name: ingredient.downcase))
   end
 end
